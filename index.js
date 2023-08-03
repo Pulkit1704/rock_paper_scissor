@@ -4,45 +4,67 @@ var paper = document.querySelector("#paper");
 var scissor = document.querySelector("#scissor"); 
 
 // the preference model defines the hierarchy of game objects, left value is preferred over the right value. 
-var preference_model = {
+const preference_model = {
     "rock": "scissor", 
     "paper": "rock",
     "scissor": "paper", 
 }
 
+const object_choices = ["rock", "paper", "scissor"]; 
 
 function get_computer_choice(){
-    const choices = ["rock", "paper", "scissor"]; 
 
-    var random_index = Math.floor(Math.random() * choices.length) 
+    var random_index = Math.floor(Math.random() * object_choices.length) 
 
-    return choices[random_index] 
+    return object_choices[random_index] 
+}
+
+function get_player_choice(){
+
+    var user_choice = prompt("pick a choice from rock, paper, scissor").toLowerCase();
+    
+    if(object_choices.includes(user_choice)){
+        return user_choice; 
+    }else{
+        window.alert("please select a valid choice from: rock, paper, scissor");
+        get_player_choice(); 
+    }
+
+}
+
+// return the string of winning or loosing from the perspective of the user. 
+function user_won(user_choice, computer_choice){
+
+    var preferred_choice = preference_model[computer_choice]; 
+
+    if(user_choice === preferred_choice){
+        return true; 
+    }else{
+        return false; 
+    }
+    
 }
 
 //todo: add a scoring system and a type check to alert for nul entries from user.
-//todo: make the user choice case insensitive. 
 function main(){
+
+    var user_score = 0; 
+    var computer_score = 0; 
     for(i = 0; i < 5; i ++){
         var computer_choice = get_computer_choice() 
 
-        var user_choice = prompt("pick a choice from rock, paper, scissor: ")
+        var user_choice = get_player_choice(); 
 
-        var preference_value = preference_model[user_choice] 
-
-        if(user_choice == computer_choice){
-            console.log(`${user_choice}: ${computer_choice}`)
-            console.log("user tied with computer") 
-            continue;
-        }
-
-        if(computer_choice == preference_value){
-            console.log(`${user_choice}: ${computer_choice}`);
-            console.log("user won");
+        if(user_won(user_choice, computer_choice)){
+            user_score++; 
         }else{
-            console.log(`${user_choice}: ${computer_choice}`)
-            console.log("computer won"); 
-        }
+            computer_score++;
+        }   
+       
+        console.log(`${user_score}, ${computer_score}`);
     }
+
+
 }
 
 main(); 
