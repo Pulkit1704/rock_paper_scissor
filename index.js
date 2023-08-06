@@ -48,7 +48,7 @@ function playRound(e) {
 
     if(user_score >=5 || computer_score >=5){
         console.log("game over"); 
-        ui_update(); 
+        winner_update(); 
         return; 
     }
 
@@ -61,11 +61,13 @@ function playRound(e) {
         computer_score++;
     }
 
+    score_update(); 
+
     console.log(`${user_score}: ${computer_score}`);
 
 }
 
-function ui_update(){
+function winner_update(){
     
     var message = document.querySelector(".winner_box > #winnermessage")
 
@@ -77,6 +79,12 @@ function ui_update(){
     }
 
     return 
+}
+
+function score_update(){
+    var current_score = document.querySelector(".score >h2> .user_score");
+
+    current_score.textContent = user_score; 
 }
 
 
