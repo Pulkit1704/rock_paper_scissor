@@ -1,9 +1,9 @@
 
 // the preference model defines the hierarchy of game objects, left value is preferred over the right value. 
 const preference_model = {
-    "rock": "scissor",
-    "paper": "rock",
-    "scissor": "paper",
+    "scissor": "rock",
+    "rock": "paper",
+    "paper":"scissor",
 }
 
 const object_choices = ["rock", "paper", "scissor"];
@@ -36,6 +36,10 @@ function user_won(user_choice, computer_choice) {
 
     var preferred_choice = preference_model[computer_choice];
 
+    console.log(`user_choice = ${user_choice}`); 
+    console.log(`computer_choice = ${computer_choice}`);
+    console.log(`preference_model_result = ${preferred_choice}`); 
+
     if (user_choice === preferred_choice) {
         return true;
     } else {
@@ -63,7 +67,7 @@ function playRound(e) {
 
     score_update(); 
 
-    console.log(`${user_score}: ${computer_score}`);
+    console.log(`current score: ${user_score}: ${computer_score}`);
 
 }
 
