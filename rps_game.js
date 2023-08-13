@@ -80,9 +80,11 @@ function winner_update(){
 }
 
 function score_update(){
-    var current_score = document.querySelector(".score > h2 > .user_score");
+    var user = document.querySelector(".score > h2 > #user_score");
+    var computer = document.querySelector(".score > h2 > #computer_score"); 
 
-    current_score.textContent = user_score; 
+    user.textContent = user_score; 
+    computer.textContent = computer_score; 
 }
 
 
