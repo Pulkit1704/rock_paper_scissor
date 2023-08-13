@@ -68,21 +68,19 @@ function playRound(e) {
 }
 
 function winner_update(){
-    
-    var message = document.querySelector(".winner_box > #winnermessage")
-
+    var message = document.querySelector(".winner_box > #message");
 
     if(user_score >= 5){
-        message.textContent = "user won"; 
+        message.textContent = "You won"; 
     }else{
-        message.textContent = "user lost"; 
+        message.textContent = "You lost"; 
     }
 
     return 
 }
 
 function score_update(){
-    var current_score = document.querySelector(".score >h2> .user_score");
+    var current_score = document.querySelector(".score > h2 > .user_score");
 
     current_score.textContent = user_score; 
 }
